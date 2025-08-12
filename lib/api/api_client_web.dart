@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
-import '../../env.dart';
-import '../auth/mobile/mobile_server_flow_auth_service.dart';
+import '../env.dart';
+import '../auth/web/web_auth_service.dart';
 
-class MobileServerFlowApiClient {
-  final Dio _dio;
-  final MobileServerFlowAuthService _auth;
-
-  MobileServerFlowApiClient(this._auth)
-      : _dio = Dio(BaseOptions(baseUrl: Env.apiBase));
+class WebApiClient {
+  final Dio _dio = Dio(BaseOptions(baseUrl: Env.apiBase));
+  final WebAuthService _auth = WebAuthService();
 
   Future<Map<String, dynamic>> getProfile() async {
     final token = await _auth.readAppToken();
